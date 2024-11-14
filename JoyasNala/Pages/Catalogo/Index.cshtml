@@ -8,11 +8,11 @@
 <div class="catalogo">
     @foreach (var producto in Model.Productos)
     {
-        <div class="producto">
+        <div class="catalog-item">
+            <h3>@producto.Nombre</h3>
             <img src="@producto.ImagenUrl" alt="@producto.Nombre" />
-            <h2>@producto.Nombre</h2>
-            <p>@producto.Descripcion</p>
             <p>Precio: $@producto.Precio</p>
+            <a asp-page="/Productos/Details" asp-route-id="@producto.Id" class="btn btn-info">Ver Detalles</a>
         </div>
     }
 </div>

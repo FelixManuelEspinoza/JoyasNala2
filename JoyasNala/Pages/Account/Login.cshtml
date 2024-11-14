@@ -1,0 +1,48 @@
+﻿@page
+@model JoyasNala.Pages.Account.LoginModel
+@{
+    ViewData["Title"] = "Iniciar Sesión";
+}
+
+<style>
+    .login-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-image: url('Images/WhatsApp Image 2024-11-02 at 20.37.55.jpeg');
+        background-size: cover;
+        background-position: center;
+    }
+    .login-card {
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        border-radius: 8px;
+        max-width: 400px;
+        width: 100%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+</style>
+
+<div class="login-container">
+    <div class="login-card">
+        <h2 class="text-center">Iniciar Sesión</h2>
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="Input.Email"></label>
+                <input asp-for="Input.Email" class="form-control" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Password"></label>
+                <input asp-for="Input.Password" class="form-control" type="password" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

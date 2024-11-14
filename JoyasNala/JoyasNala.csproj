@@ -22,4 +22,12 @@
     <Folder Include="wwwroot\Images\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\Images\anillo.jpg" />
+    <None Include="wwwroot\Images\Collar.jpg" />
+    <None Include="wwwroot\Images\Logo.jpeg" />
+    <None Include="wwwroot\Images\pulsera.jpg" />
+    <None Include="wwwroot\Images\WhatsApp Image 2024-11-02 at 20.37.55.jpeg" />
+  </ItemGroup>
+
 </Project>

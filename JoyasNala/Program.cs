@@ -16,6 +16,12 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // Configurar el servicio de hashing de contraseñas
 builder.Services.AddScoped<IPasswordHasher<Usuario>, PasswordHasher<Usuario>>();
 
+//login
+builder.Services.AddIdentity<Usuario, IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
+
+
 // Configuración de Swagger para documentar la API
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();  // Configurar Swagger
@@ -32,6 +38,16 @@ using (var scope = app.Services.CreateScope())
     // Llamar al método de seeding para cargar datos de ejemplo
     ApplicationDbInitializer.SeedData(context);
 }
+
+//login
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var userManager = services.GetRequiredService<UserManager<Usuario>>();
+    await ApplicationDbInitializer.SeedData(userManager);
+}
+
 
 // Configuración del pipeline de solicitud HTTP
 if (app.Environment.IsDevelopment())
@@ -58,3 +74,5 @@ app.MapRazorPages();
 app.MapControllers(); // Mapear los controladores para que Swagger pueda encontrarlos
 
 app.Run();
+app.UseAuthentication();
+app.UseAuthorization();

@@ -15,9 +15,9 @@ namespace JoyasNala.Data
             if (!context.Productos.Any())
             {
                 context.Productos.AddRange(
-                    new Producto { Nombre = "Anillo de Oro", Precio = 1500.00M, Descripcion = "Anillo de oro de 14k", ImagenUrl = "wwwroot/Images/anillo.jpg" },
-                    new Producto { Nombre = "Collar de Plata", Precio = 800.00M, Descripcion = "Collar de plata esterlina", ImagenUrl = "wwwroot/Images/Collar.jpg" },
-                    new Producto { Nombre = "Pulsera de Diamantes", Precio = 3000.00M, Descripcion = "Pulsera con incrustaciones de diamantes", ImagenUrl = "wwwroot/Images/pulsera.jpg" }
+                    new Producto { Nombre = "Anillo de Oro", Precio = 1500.00M, Descripcion = "Anillo de oro de 14k", ImagenUrl = "~/Images/anillo.jpg" },
+                    new Producto { Nombre = "Collar de Plata", Precio = 800.00M, Descripcion = "Collar de plata esterlina", ImagenUrl = "~/Images/Collar.jpg" },
+                    new Producto { Nombre = "Pulsera de Diamantes", Precio = 3000.00M, Descripcion = "Pulsera con incrustaciones de diamantes", ImagenUrl = "~/Images/pulsera.jpg" }
                 );
 
                 // Guarda los cambios
@@ -29,20 +29,18 @@ namespace JoyasNala.Data
         }
 
 
-        public static void SeedData(ApplicationDbContext context, UserManager<Usuario> userManager)
+        public static async Task SeedData(UserManager<Usuario> userManager)
         {
-            context.Database.Migrate();
-
-            if (!userManager.Users.Any(u => u.Nombre == "nala"))
+            if (await userManager.FindByEmailAsync("nala@example.com") == null)
             {
-                var adminUser = new Usuario
+                var usuario = new Usuario
                 {
-                    
-                    Nombre = "nala",
-                    Email = "nala@ejemplo.com",
+                    Nombre = "nala@example.com",
+                    Email = "nala@example.com",
                     Rol = "Administrador"
                 };
-                userManager.CreateAsync(adminUser, "ContraseñaSegura123!").Wait();
+
+                await userManager.CreateAsync(usuario, "ContraseñaSegura123!");
             }
         }
 

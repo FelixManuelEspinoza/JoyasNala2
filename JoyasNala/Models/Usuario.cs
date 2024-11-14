@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace JoyasNala.Models
 {
-    public class Usuario
+    public class Usuario : IdentityUser
     {
         public int Id { get; set; }
         public string Nombre { get; set; }

@@ -1,0 +1,27 @@
+﻿@page "{id:int}"
+@model JoyasNala.Pages.Productos.DetailsModel
+@{
+    ViewData["Title"] = Model.Producto.Nombre;
+}
+
+<div class="product-details-container">
+    <h2>@Model.Producto.Nombre</h2>
+    <img src="@Model.Producto.ImagenUrl" alt="@Model.Producto.Nombre" class="product-image" />
+    <p>@Model.Producto.Descripcion</p>
+    <h4>Precio: $@Model.Producto.Precio</h4>
+    <button class="btn btn-primary">Comprar</button>
+</div>
+
+<style>
+    .product-details-container {
+        text-align: center;
+        margin: 20px auto;
+        max-width: 600px;
+    }
+
+    .product-image {
+        width: 100%;
+        max-width: 300px;
+        border-radius: 8px;
+    }
+</style>
